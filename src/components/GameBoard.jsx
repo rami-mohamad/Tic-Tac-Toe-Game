@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const boardInitialData = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]
-]
-function GameBoard() {
+
+function GameBoard({changePlayer, board}) {
+  
+  // const [gameBoardX, setGameBoardX]= useState(boardInitialData);
+
+  // const handleBoardClick = (rowIndex, colIndex)=>{
+  //       setGameBoardX((prevState)=>{
+  //         const updatedBoard = [...prevState.map((innerArray)=>[...innerArray])];
+  //         updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+  //         return updatedBoard;
+  //       })
+  //   changePlayer();
+  // }
   return (
     <ol id='game-board'>
-        {boardInitialData.map((row, rowIndex)=>{
+        {board.map((row, rowIndex)=>{
            return <li key={rowIndex}>
             <ol>
                 {row.map((col, colIndex)=>{
-                   return <li key={colIndex}><button>{col}</button></li>
+                   return <li key={colIndex}><button onClick={()=>changePlayer(rowIndex, colIndex)} disabled={col !== null}>{col}</button></li>
                 })}
             </ol>
            </li>
